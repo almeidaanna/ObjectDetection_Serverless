@@ -30,14 +30,8 @@ def do_prediction(image,net,LABELS):
     blob = cv2.dnn.blobFromImage(image, 1 / 255.0, (416, 416),
                                  swapRB=True, crop=False)
     net.setInput(blob)
-    # start = time.time()
     layerOutputs = net.forward(ln)
-    #print(layerOutputs)
-    # end = time.time()
-
-    # show timing information on YOLO
-    # print("[INFO] YOLO took {:.6f} seconds".format(end - start))
-
+    
     # initialize our lists of detected bounding boxes, confidences, and
     # class IDs, respectively
     boxes = []
@@ -88,14 +82,7 @@ def do_prediction(image,net,LABELS):
     if len(idxs) > 0:
         # loop over the indexes we are keeping
         for i in idxs.flatten():
-            # each_object[i] = {}
-            # each_object[i]["label"] = LABELS[classIDs[i]]
-            # each_object[i]["accuracy"] = confidences[i]
-            # each_object[i]["rectangle"] = {}
-            # each_object[i]["rectangle"]["height"] = boxes[i][3]
-            # each_object[i]["rectangle"]["left"] = boxes[i][0]
-            # each_object[i]["rectangle"]["top"] = boxes[i][1]
-            # each_object[i]["rectangle"]["width"] = boxes[i][2]
+           
             list_of_objects.append(LABELS[classIDs[i]].decode())
 
     return list_of_objects
@@ -108,9 +95,11 @@ def lambda_handler(event,context):
         image_key = event["Records"][0]['s3']['object']['key']
         image_url = "https://{}.s3.amazonaws.com/{}".format(s3_bucket,image_key)
         image_file = s3.get_object(Bucket=s3_bucket, Key=image_key)['Body'].read()
+        
+        # For testing within lambda function.
         # image_url = event['url']
         # image_key = image_url.split('/')[-1]
-        # image_file = s3.get_object(Bucket=s3_bucket, Key=image_key)['Body'].read() #REMOVE.
+        # image_file = s3.get_object(Bucket=s3_bucket, Key=image_key)['Body'].read()
         # print(image_file)
         
         numpy_image_array = np.frombuffer(image_file, np.uint8)
