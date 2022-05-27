@@ -1,0 +1,113 @@
+<html>
+
+<head>
+    <title>
+        Object Detection
+    </title>
+</head>
+
+<body>
+    <div>Object Detection Functions:</div>
+    <div style="display: grid; width: max-content; padding: 5;">
+        <div style="grid-column: 1; grid-row: 1; padding: 5;">
+            <p>1. Upload Image</p>
+            <form action="/uploaded" method="POST" enctype="multipart/form-data">
+                <input type="file" title="Choose Image" name="image" accept="image/png, image/jpeg">
+                <input type="hidden" value={{username}} name="username" />
+                <input type="hidden" value={{id_token}} name="id_token" />
+                <input type="hidden" value={{access_token}} name="access_token" />
+                <input type="hidden" value={{refresh_token}} name="refresh_token" />
+                <input type="submit" value="Upload" />
+            </form>
+            {{upload_message}}
+        </div>
+        <div style="grid-column: 2; grid-row: 1; padding: 5;">
+            <p>2. Update Image Tags</p>
+            <form action="/updateImageTag" method="POST">
+                <div style="display: inline; padding: 5;">
+                    <p>Image URL:</p>
+                    <input type="text" title="Url" name="url" />
+                </div>
+                <div style="display: inline; padding: 5;">
+                    <p>Update Type(1: add, 0: remove):</p>
+                    <input type="text" title="Type" name="type" />
+                </div>
+                <div style="display: inline; padding: 5;">
+                    <p>Image Tags (seperate multiple using comma):</p>
+                    <input type="text" title="Tags" name="tags" />
+                </div>
+                <div style="display: inline; padding: 5;">
+                    <input type="hidden" value={{username}} name="username" />
+                    <input type="hidden" value={{id_token}} name="id_token" />
+                    <input type="hidden" value={{access_token}} name="access_token" />
+                    <input type="hidden" value={{refresh_token}} name="refresh_token" />
+                    <input type="submit" value="Update Tags" />
+                </div>
+            </form>
+            {{update_image_tag_message}}
+        </div>
+        <div style="grid-column: 1; grid-row: 2; padding: 5;">
+            <p>3. List Image by Tags</p>
+            <form action="/listByTags" method="POST">
+                <div style="display: inline; padding: 5;">
+                    <p>Image Tags (seperate multiple using comma):</p>
+                    <input type="text" title="Tags" name="tags" />
+                </div>
+                <div style="display: inline; padding: 5;">
+                    <input type="hidden" value={{username}} name="username" />
+                    <input type="hidden" value={{id_token}} name="id_token" />
+                    <input type="hidden" value={{access_token}} name="access_token" />
+                    <input type="hidden" value={{refresh_token}} name="refresh_token" />
+                    <input type="submit" value="Search Images" />
+                </div>
+            </form>
+            {{list_by_tags_message}}
+        </div>
+        <div style="grid-column: 2; grid-row: 2; padding: 5;">
+            <p>4. List Image by Image Data</p>
+            <form action="/listByImageData" method="POST" enctype="multipart/form-data">
+                <div style="display: inline; padding: 5;">
+                    <p>Upload Image:</p>
+                    <input type="file" title="Choose Image" name="image" accept="image/png, image/jpeg">
+                </div>
+                <div style="display: inline; padding: 5;">
+                    <input type="hidden" value={{username}} name="username" />
+                    <input type="hidden" value={{id_token}} name="id_token" />
+                    <input type="hidden" value={{access_token}} name="access_token" />
+                    <input type="hidden" value={{refresh_token}} name="refresh_token" />
+                    <input type="submit" value="Search Images" />
+                </div>
+            </form>
+            {{list_by_image_data_message}}
+        </div>
+        <div style="grid-column: 1; grid-row: 3; padding: 5;">
+            <p>5. Delete Image</p>
+            <form action="/deleteImage" method="POST">
+                <div style="display: inline; padding: 5;">
+                    <p>Image URL:</p>
+                    <input type="text" title="Url" name="url" />
+                </div>
+                <div style="display: inline; padding: 5;">
+                    <input type="hidden" value={{username}} name="username" />
+                    <input type="hidden" value={{id_token}} name="id_token" />
+                    <input type="hidden" value={{access_token}} name="access_token" />
+                    <input type="hidden" value={{refresh_token}} name="refresh_token" />
+                    <input type="submit" value="Delete Image" />
+                </div>
+            </form>
+            {{delete_image_nessage}}
+        </div>
+        <div style="grid-column: 2; grid-row: 3; padding: 5;">
+            <form action="/logout" method="POST">
+                <input type="hidden" value={{username}} name="username" />
+                <input type="hidden" value={{id_token}} name="id_token" />
+                <input type="hidden" value={{access_token}} name="access_token" />
+                <input type="hidden" value={{refresh_token}} name="refresh_token" />
+                <input type="submit" value="Logout" />
+            </form>
+            {{logout_message}}
+        </div>
+    </div>
+</body>
+
+</html>
