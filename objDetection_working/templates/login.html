@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <title>
+        Object Detection Login
+    </title>
+</head>
+
+<body style="align-items: center;">
+    <div style="display: flex; align-items: center;">Object Detection</div>
+    <div style="display: grid; padding: 5; align-items: center;">
+        <div style="grid-column: 1; grid-row: 1; padding: 5;">
+            <form action="/login" method="POST">
+                <div style="display: grid; width: fit-content; padding: 5; align-items: center;">
+                    <div style="grid-column: 1; grid-row: 1">Email</div>
+                    <div style="grid-column: 2; grid-row: 1"><input type="email" name="email" /></div>
+                    <div style="grid-column: 1; grid-row: 2">Password</div>
+                    <div style="grid-column: 2; grid-row: 2"><input type="password" name="password" /></div>
+                </div>
+                <input type="submit" value="Log In" />
+                {{login_message}}
+            </form>
+        </div>
+        <div style="grid-column: 2; grid-row: 1; padding: 5; align-items: center;">
+            <form action="/createAccount" method="POST">
+                <div style="display: grid; width: fit-content; padding: 5; align-items: center;">
+                    <div style="grid-column: 1; grid-row: 1">Email</div>
+                    <div style="grid-column: 2; grid-row: 1"><input type="email" name="email" /></div>
+                    <div style="grid-column: 1; grid-row: 2">First Name</div>
+                    <div style="grid-column: 2; grid-row: 2"><input type="text" name="first_name" /></div>
+                    <div style="grid-column: 1; grid-row: 3">Last Name</div>
+                    <div style="grid-column: 2; grid-row: 3"><input type="text" name="last_name" /></div>
+                    <div style="grid-column: 1; grid-row: 4">Password</div>
+                    <div style="grid-column: 2; grid-row: 4"><input type="password" name="password" /></div>
+                </div>
+                <input type="submit" value="Create Account" />
+                {{create_account_message}}
+            </form>
+            {% if hide_verification == False %}
+            <form action="/verifyAccount" method="POST">
+                <div style="display: grid; width: fit-content; padding: 5; align-items: center;"></div>
+                <div style="grid-column: 1; grid-row: 1">Verification Code for {{username}}</div>
+                <div style="grid-column: 2; grid-row: 1"><input type="number" name="verification_code" /></div>
+                <input type="hidden" name="username" value={{username}} />
+                <input type="submit" value="Verify Account" />
+            </form>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+
+</html>
